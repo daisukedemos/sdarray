@@ -22,3 +22,10 @@ def build(bld):
        uselib_local = 'sdarray' ,
        uselib       = '',
        includes     = '.')
+  bld(
+       features     = 'cxx cprogram gtest',
+       source       = 'RSDicTest.cpp',
+       target       = 'rsdic_test',
+       uselib_local = 'sdarray' ,
+       uselib       = '',
+       includes     = '.')

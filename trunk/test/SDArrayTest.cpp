@@ -24,7 +24,7 @@
 using namespace std;
 using namespace SDS;
 
-TEST(sdaode, trivial){
+TEST(sdarray, trivial){
   SDArray sda;
   sda.build();
   ASSERT_EQ(0, sda.size());
@@ -35,7 +35,7 @@ TEST(sdaode, trivial){
   ASSERT_EQ(0, sda.allocSize());
 }
 
-TEST(sdaode, zeros){
+TEST(sdarray, zeros){
   SDArray sda;
   int N = 10000;
   for (int i = 0; i < N; ++i){
@@ -55,7 +55,7 @@ TEST(sdaode, zeros){
   ASSERT_EQ(SDArray::NOTFOUND, sda.find(0));
 }
 
-TEST(sdaode, ones){
+TEST(sdarray, ones){
   SDArray sda;
   int N = 10000;
   for (int i = 0; i < N; ++i){
@@ -76,7 +76,7 @@ TEST(sdaode, ones){
   }
 }
 
-TEST(sdaode, increasing){
+TEST(sdarray, increasing){
   SDArray sda;
   uint64_t N = 1000;
   vector<uint64_t> vals(N);
@@ -113,7 +113,7 @@ TEST(sdaode, increasing){
 
 
 
-TEST(sdaode, random){
+TEST(sdarray, random){
   SDArray sda;
   uint64_t N = 1000;
   vector<uint64_t> vals(N);

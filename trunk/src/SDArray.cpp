@@ -17,7 +17,6 @@
  *      software without specific prior written permission.
  */
 
-#include <iostream>
 #include <cassert>
 #include "SDArray.hpp"
 
@@ -25,16 +24,7 @@ using namespace std;
 
 namespace SDS{
 
-const uint64_t SDArray::BLOCK_SIZE   = 64;
-
-void printBit(const uint64_t x){
-  for (size_t i = 0; i < 64; ++i){
-    if ((x >> i) & 1LLU) cout << "1";
-    else                  cout << "0";
-    if ((i+1) % 8 == 0)   cout << " ";
-  }
-  cout << endl;
-}
+const uint64_t SDArray::BLOCK_SIZE = 64;
 
 uint64_t SDArray::log2(uint64_t x){
   uint64_t r = 0;
@@ -142,7 +132,6 @@ void SDArray::build(){
     header |= firstSum_ << 56;
   }
   Ltable_.push_back(header);
-
   vals_.clear();
 }
 
@@ -180,7 +169,10 @@ uint64_t SDArray::prefixSumLookup(const uint64_t pos, uint64_t& val) const {
 }
 
 uint64_t SDArray::find(const uint64_t val) const{
-  if (sum_ <= val) return NOTFOUND;
+  if (sum_ <= val) {
+    cout << "come0" << endl;
+    return NOTFOUND;
+  }
   uint64_t low  = 0;
   uint64_t high = Ltable_.size() / 2;
   while (low < high){
@@ -192,7 +184,10 @@ uint64_t SDArray::find(const uint64_t val) const{
       low = mid+1;
     }
   }
-  if (low*2 > Ltable_.size()) return NOTFOUND;
+  if (low*2 > Ltable_.size()) {
+    cout << "come1" << endl;
+    return NOTFOUND;
+  }
   if (low == 0) return 0;
   uint64_t bpos = low-1;
   assert(Ltable_[bpos*2] <= val);

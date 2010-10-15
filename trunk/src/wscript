@@ -10,13 +10,13 @@ def configure(ctx):
 def build(bld):
   bld(
        features     = 'cxx cshlib',
-       source       = 'SDArray.cpp',
+       source       = 'SDArray.cpp RSDic.cpp',
        name         = 'sdarray',
        target       = 'sdarray',
        includes     = '.')
   bld(
        features     = 'cxx cstaticlib',
-       source       = 'SDArray.cpp',
+       source       = 'SDArray.cpp RSDic.cpp',
        name         = 'sdarray',
        target       = 'sdarray',
        includes     = '.')
