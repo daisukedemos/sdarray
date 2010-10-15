@@ -1,0 +1,24 @@
+def set_options(ctx):
+  ctx.tool_options('compiler_cxx')
+  ctx.tool_options('unittestt')
+    
+def configure(ctx):
+  ctx.check_tool('compiler_cxx')
+  ctx.check_tool('unittestt')  
+  ctx.env.CXXFLAGS += ['-O2', '-Wall', '-g']
+
+def build(bld):
+  bld(
+       features     = 'cxx cprogram',
+       source       = 'SDArrayPerformanceTest.cpp',
+       target       = 'sdarray_performance_test',
+       uselib_local = 'sdarray' ,
+       uselib       = '',
+       includes     = '.')
+  bld(
+       features     = 'cxx cprogram gtest',
+       source       = 'SDArrayTest.cpp',
+       target       = 'sdarray_test',
+       uselib_local = 'sdarray' ,
+       uselib       = '',
+       includes     = '.')
