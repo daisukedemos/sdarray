@@ -17,8 +17,8 @@
  *      software without specific prior written permission.
  */
 
-#ifndef VCODE_HPP__
-#define VCODE_HPP__
+#ifndef SDARRAY_HPP__
+#define SDARRAY_HPP__
 
 #include <vector>
 #include <stdint.h>
@@ -41,6 +41,7 @@ public:
 
   /*
    * Add new item to the last
+   * val >= 0
    */
   void add(uint64_t val);
 
@@ -50,7 +51,7 @@ public:
   void build();
 
   void clear();
-  
+
   /*
    * @ret vals_[0]+vals_[1]+...+vals_[pos-1]
    */
@@ -62,7 +63,7 @@ public:
   uint64_t prefixSumLookup(uint64_t pos, uint64_t& val) const;  
 
   /*
-   * @ret i s.t. vals_[0]+...+vals_[i] <= val < vals_[0]+...+vals_[i]+vals_[i+1] 
+   * @ret Return ind s.t. prefixSum(ind) <= val < prefixSum(ind+1) or NOTFOUND if not exist
    */
   uint64_t find(uint64_t val) const;
 
@@ -78,9 +79,7 @@ private:
 
   uint64_t selectBlock(uint64_t rank, uint64_t header) const;
   uint64_t rankBlock(uint64_t val, uint64_t header) const;
-
   uint64_t getLow(uint64_t begPos, uint64_t num, uint64_t width) const;
-
   uint64_t getBit(uint64_t pos) const;
   uint64_t getBits(uint64_t pos, uint64_t num) const;
   static uint64_t log2(uint64_t x);
@@ -97,4 +96,4 @@ private:
 
 }
 
-#endif // VCODE_HPP__
+#endif // SDARRAY_HPP__
